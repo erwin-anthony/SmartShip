@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -25,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();//进行实例化
+        inflater.inflate(R.menu.menu,menu);//解析菜单文件
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
 
     public void startActivity2(View view) {
         startActivity( new Intent(this,MapActivity.class));
