@@ -5,18 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="bottom|center_horizontal"
-    android:paddingBottom="150dp"
     tools:context=".MainActivity">
 
-    //启动按钮
+    <LinearLayout
+        android:layout_width="423dp"
+        android:layout_height="490dp">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/boat"
+            android:layout_width="398dp"
+            android:layout_height="348dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/boat"></pl.droidsonroids.gif.GifImageView>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/start"
         android:layout_width="120dp"
         android:layout_height="100dp"
+        android:layout_gravity="bottom|center_horizontal"
         android:background="@drawable/btn_selector"
-        android:onClick="startActivity2"/>
+        android:onClick="startActivity2"
+        android:paddingBottom="100dp" />
+
+
+    //启动按钮
 
 
 </LinearLayout>
