@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
+    Button btn1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void startActivity2(View view) {
-        startActivity( new Intent(this,MapActivity.class));
+        //添加震动监听器
+        btn1 =findViewById(R.id.start);
+        btn1.setOnClickListener(new ViewClickVibrate() {
+            public void onClick(View v) {
+                super.onClick(v);
+                // TODO
+                //添加intent
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
     }
 }

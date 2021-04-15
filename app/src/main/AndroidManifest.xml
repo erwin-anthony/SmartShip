@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartship">
+    //马达震动的权限
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- 这个权限用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
@@ -28,14 +30,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_ship"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light">
 
         <meta-data android:name="com.baidu.lbsapi.API_KEY"
             android:value="8ND2FdixXc8ojv2r5B0dHuGTBsYgonwl"></meta-data>
 
 
         <activity android:name=".MapActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         //主activity
         <activity android:name=".MainActivity"
