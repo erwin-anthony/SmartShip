@@ -162,7 +162,7 @@ public class MapActivity extends AppCompatActivity {
         @Override
         public void onReceiveLocation(BDLocation location) {
             navigateTo(location);
-/*
+
             StringBuilder currentPosition =new StringBuilder();
             currentPosition.append("纬度:").append(location.getLatitude()).append("\n");
             currentPosition.append("经度:").append(location.getLongitude()).append("\n");
@@ -179,7 +179,7 @@ public class MapActivity extends AppCompatActivity {
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
                 currentPosition.append("网络");
             }
-            locationInfo.setText(currentPosition);*/
+            locationInfo.setText(currentPosition);
 
 
 
