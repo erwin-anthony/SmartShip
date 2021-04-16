@@ -32,16 +32,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
 
-        <meta-data android:name="com.baidu.lbsapi.API_KEY"
-            android:value="8ND2FdixXc8ojv2r5B0dHuGTBsYgonwl"></meta-data>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="8ND2FdixXc8ojv2r5B0dHuGTBsYgonwl" />
 
-
-        <activity android:name=".MapActivity"
+        <activity
+            android:name=".MapActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
-        //主activity
-        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +50,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.baidu.location.f"
+        <service
+            android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=".remote"></service>
     </application>

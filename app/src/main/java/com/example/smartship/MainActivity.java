@@ -4,9 +4,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,6 +17,8 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
     Button btn1;
+    private View btn2;
+    private View btn3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,5 +65,49 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
+    public void bluetoothActivity(MenuItem item) {
+        //添加震动监听器
+        btn2 =findViewById(R.id.bluetooth);
+        btn2.setOnClickListener(new ViewClickVibrate() {
+            public void onClick(View v) {
+                super.onClick(v);
+                //添加intent
+                Intent intent =  new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
+    public void wifiActivity(MenuItem item) {
+        //添加震动监听器
+        btn3 =findViewById(R.id.WIFI);
+        btn3.setOnClickListener(new ViewClickVibrate() {
+            public void onClick(View v) {
+                super.onClick(v);
+                // TODO
+                //添加intent
+                Intent intent = new Intent();
+                intent.setAction("android.net.wifi.PICK_WIFI_NETWORK");
+                startActivity(intent);
+
+
+            }
+        });
+
+
+    }
+
+
+
+
+
+
 }
+
+
