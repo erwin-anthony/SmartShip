@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="423dp"
-        android:layout_height="490dp">
+        android:layout_height="356dp">
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/boat"
@@ -20,14 +20,13 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/start"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:background="@drawable/btn_selector"
-        android:onClick="startActivity2"
-        android:paddingBottom="100dp" />
+
+
+        <fragment
+            android:id="@+id/fragment1"
+            android:name="com.example.smartship.BluetoothFragment"
+            android:layout_width="match_parent"
+            android:layout_height="392dp" />
 
 
     //启动按钮
