@@ -9,6 +9,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ public class MapActivity extends AppCompatActivity {
     MapView mMapView;
     BaiduMap mBaiduMap =null;
     boolean isFirstLocate =true;
+    private RemoteView controlDirection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,24 @@ public class MapActivity extends AppCompatActivity {
         }else{
             requestLocation();
         }
+        //摇杆控制监听器
+        controlDirection=(RemoteView)findViewById(R.id.controlDirectionBnt);
+
+        controlDirection.setOnTouchListener(new View.OnTouchListener() {
+
+
+            @Override
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                controlDirection.getX();
+                controlDirection.getY();
+                //摇杆控制器返回值,以坐标0，0为圆心
+                float x=controlDirection.getX();
+                float y=controlDirection.getY();
+
+                return false;
+            }
+        });
+
 
     }
 

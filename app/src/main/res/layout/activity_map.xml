@@ -22,6 +22,7 @@
             android:layout_marginTop="0dp" />
 
         <com.example.smartship.RemoteView
+            android:id="@+id/controlDirectionBnt"
             android:layout_width="180dp"
             android:layout_height="150dp"
             android:layout_alignParentBottom="true"
