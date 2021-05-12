@@ -42,5 +42,12 @@
     </com.baidu.mapapi.map.MapView>
 
 
+    <ImageButton
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="startActivity3"
+        android:src="@drawable/ic_location">
 
+    </ImageButton>
 </LinearLayout>

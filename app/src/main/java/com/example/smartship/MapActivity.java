@@ -6,9 +6,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -28,6 +35,9 @@ import com.baidu.mapapi.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 
 public class MapActivity extends AppCompatActivity {
 
@@ -38,6 +48,7 @@ public class MapActivity extends AppCompatActivity {
     BaiduMap mBaiduMap =null;
     boolean isFirstLocate =true;
     private RemoteView controlDirection;
+    private View btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,6 +255,35 @@ public class MapActivity extends AppCompatActivity {
         super.onPause();
         mMapView.onPause();
     }
+
+    public void startActivity3(View view) {
+        //添加震动监听器
+        btn4 =findViewById(R.id.location);
+        btn4.setOnClickListener(new ViewClickVibrate() {
+            public void onClick(View v) {
+                super.onClick(v);
+                // TODO
+                //添加intent
+                Intent intent = new Intent();
+                intent.setClass(MapActivity.this, WebActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+    }
+
+
+
+    public  void getGdMapUri(){
+        Uri uri=Uri.parse("https://www.aotu.fun/qiq");
+        Intent intent= new Intent(Intent.ACTION_VIEW, uri);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
 }
 
 

@@ -50,24 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void startActivity2(View view) {
-        //添加震动监听器
-        btn1 =findViewById(R.id.start);
-        btn1.setOnClickListener(new ViewClickVibrate() {
-            public void onClick(View v) {
-                super.onClick(v);
-                // TODO
-                //添加intent
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, MapActivity.class);
-                startActivity(intent);
 
-            }
-        });
-
-
-
-    }
 
     public void bluetoothActivity(MenuItem item) {
         //添加震动监听器

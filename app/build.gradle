@@ -45,6 +45,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //LitePal
+    implementation 'org.litepal.android:core:1.3.2'
+    //butterknife注释
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+    //事件传递
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    //http
+    api 'com.lzy.net:okgo:3.0.4'
+    api 'com.google.code.gson:gson:2.7'
+
+    //implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    //log
+    implementation 'com.orhanobut:logger:1.15'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 dependencies {
