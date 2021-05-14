@@ -65,6 +65,7 @@ dependencies {
 
 dependencies {
 
+    implementation files('libs\\org.eclipse.paho.client.mqttv3-1.2.2.jar')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.15'
 }
