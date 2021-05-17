@@ -46,7 +46,9 @@ public class RemoteView extends View {
      * GO 前进
      * 默认为停止
      */
-    String orientation="STOP";
+    public static class control {
+        static String orientation = null;
+    }
 
     public RemoteView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -61,16 +63,16 @@ public class RemoteView extends View {
         initPaint();
         canvas.drawCircle(backX, backY, radiusBack, backPaint);
 
-        if (orientation=="GO") {
+        if (control.orientation=="GO") {
             canvas.drawArc(mRectF, -45, -90, true, rectfPaint);
-        }else if (orientation=="RETURN"){
+        }else if (control.orientation=="RETURN"){
             canvas.drawArc(mRectF, 45, 90, true, rectfPaint);
-        }else if (orientation=="LEFT"){
+        }else if (control.orientation=="LEFT"){
             canvas.drawArc(mRectF, 135, 90, true, rectfPaint);
-        }else if (orientation=="RIGHT"){
+        }else if (control.orientation=="RIGHT"){
             canvas.drawArc(mRectF, -45, 90, true, rectfPaint);
 
-        }else if (orientation=="STOP"){
+        }else if (control.orientation=="STOP"){
             rectfPaint.setAlpha(0);
             canvas.drawArc(mRectF, -90, 360, true, rectfPaint);
         }
@@ -116,7 +118,7 @@ public class RemoteView extends View {
             case MotionEvent.ACTION_UP:
                 bubbleX = backX;
                 bubbleY = backY;
-                orientation="STOP";
+                control.orientation="STOP";
                 break;
         }
         invalidate();
@@ -238,15 +240,15 @@ public class RemoteView extends View {
      */
     private void getOrientation(float x,float y){
         if (y<backY&&(x<backX+backX*0.707&&x>backY-backY*0.707)){
-            orientation = "GO";
+            control.orientation = "GO";
         }else if (x>backX&&(y<backY+backY*0.707&&y>backY-backY*0.707)){
-            orientation="RIGHT";
+            control.orientation="RIGHT";
         }else if (y>backY&&(x<backX+backX*0.707&&x>backY-backY*0.707)){
-            orientation="RETURN";
+            control.orientation="RETURN";
         }else if (x<backX&&(y<backY+backY*0.707&&y>backY-backY*0.707)){
-            orientation="LEFT";
+            control.orientation="LEFT";
         }else {
-            orientation="STOP";
+            control.orientation="STOP";
         }
 
     }

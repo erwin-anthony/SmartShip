@@ -57,6 +57,7 @@ public class MapActivity extends AppCompatActivity {
     BaiduMap mBaiduMap =null;
     boolean isFirstLocate =true;
     private RemoteView controlDirection;
+    public RemoteView orientation;
     private View btn4;
     private Object mqttManager;
     private String host = "tcp://a1jdH1fiX5K.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883";
@@ -70,6 +71,30 @@ public class MapActivity extends AppCompatActivity {
     private MqttClient client;
     private MqttConnectOptions options;
     private Handler handler;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (RemoteView.control.orientation){
+            case "Go":
+                Toast.makeText(MapActivity.this,"小船前进" ,Toast.LENGTH_SHORT).show();
+                break;
+            case "RETURN":
+                Toast.makeText(MapActivity.this,"小船后退" ,Toast.LENGTH_SHORT).show();
+                break;
+            case "LEFT":
+                Toast.makeText(MapActivity.this,"小船左转" ,Toast.LENGTH_SHORT).show();
+                break;
+            case "RIGHT":
+                Toast.makeText(MapActivity.this,"小船右转" ,Toast.LENGTH_SHORT).show();
+                break;
+
+
+
+
+
+        }
+        return super.onTouchEvent(event);
+    }
 
     @SuppressLint("HandlerLeak")
 
@@ -151,20 +176,9 @@ public class MapActivity extends AppCompatActivity {
         //摇杆控制监听器
         controlDirection=(RemoteView)findViewById(R.id.controlDirectionBnt);
 
-        controlDirection.setOnTouchListener(new View.OnTouchListener() {
 
 
-            @Override
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                controlDirection.getX();
-                controlDirection.getY();
-                //摇杆控制器返回值,以坐标0，0为圆心
-                float x=controlDirection.getX();
-                float y=controlDirection.getY();
 
-                return false;
-            }
-        });
 
 
     }
