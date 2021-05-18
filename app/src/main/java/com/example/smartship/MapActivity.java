@@ -76,16 +76,16 @@ public class MapActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event) {
         switch (RemoteView.control.orientation){
             case "Go":
-                Toast.makeText(MapActivity.this,"小船前进" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"小船前进" ,Toast.LENGTH_SHORT).show();
                 break;
             case "RETURN":
-                Toast.makeText(MapActivity.this,"小船后退" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"小船后退" ,Toast.LENGTH_SHORT).show();
                 break;
             case "LEFT":
-                Toast.makeText(MapActivity.this,"小船左转" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"小船左转" ,Toast.LENGTH_SHORT).show();
                 break;
             case "RIGHT":
-                Toast.makeText(MapActivity.this,"小船右转" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"小船右转" ,Toast.LENGTH_SHORT).show();
                 break;
 
 
