@@ -63,14 +63,18 @@ public class MapActivity extends AppCompatActivity {
     private String host = "tcp://a1jdH1fiX5K.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883";
     private String userName = "smart_ship&a1jdH1fiX5K";
     private String passWord = "ad9d4785a55cb288122d01192aa43f7a431fb008";
-    private String mqtt_id = "smart_ship|securemode=3,signmethod=hmacsha1,timestamp=789|"; //定义成自己的QQ号  切记！不然会掉线！！！
-    private String mqtt_sub_topic = "609510594"; //为了保证你不受到别人的消息  哈哈
-    private String mqtt_pub_topic = "/a1jdH1fiX5K/${deviceName}/user/ship_control"; //为了保证你不受到别人的消息  哈哈  自己QQ好后面加 _PC
+    private String mqtt_id = "smart_ship|securemode=3,signmethod=hmacsha1,timestamp=789|";
+    private String mqtt_sub_topic = "609510594";
+    private String mqtt_pub_topic = "/a1jdH1fiX5K/${deviceName}/user/ship_control";
     private ScheduledExecutorService scheduler;
     private TextView text_test;
     private MqttClient client;
     private MqttConnectOptions options;
     private Handler handler;
+    private View button_go;
+    private View button_return;
+    private View button_left;
+    private View button_right;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -91,9 +95,6 @@ public class MapActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "小船右转", Toast.LENGTH_SHORT).show();
                 break;
             }
-
-
-
 
 
         }
@@ -148,6 +149,10 @@ public class MapActivity extends AppCompatActivity {
 
 
         locationInfo = findViewById(R.id.locationInfo);
+        button_go =findViewById(R.id.button_go);
+        button_return =findViewById(R.id.button_return);
+        button_left =findViewById(R.id.button_left);
+        button_right =findViewById(R.id.button_right);
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(new MyLocationListener());
 
@@ -158,6 +163,44 @@ public class MapActivity extends AppCompatActivity {
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
 
         mBaiduMap.setMyLocationEnabled(true);
+
+//按钮控制
+        button_go.setOnClickListener(new ViewClickVibrate() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"小船前进" ,Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"150");
+            }
+        });
+
+        button_return.setOnClickListener(new ViewClickVibrate() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"小船后退" ,Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        button_left.setOnClickListener(new ViewClickVibrate() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"小船左转" ,Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"1");
+            }
+        });
+
+        button_right.setOnClickListener(new ViewClickVibrate() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"小船右转" ,Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"255");
+            }
+        });
+
+
 
 
         List<String> permissionList = new ArrayList<String>();

@@ -40,14 +40,59 @@
         android:clickable="true">
 
     </com.baidu.mapapi.map.MapView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:onClick="startActivity3"
+            android:src="@drawable/ic_location">
 
-    <ImageButton
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="startActivity3"
-        android:src="@drawable/ic_location">
+        </ImageButton>
 
-    </ImageButton>
+        <Button
+            android:id="@+id/button_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="98dp"
+            android:layout_marginBottom="71dp"
+            android:text="左转" />
+
+        <Button
+            android:id="@+id/button_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="71dp"
+            android:text="右转" />
+
+        <Button
+            android:id="@+id/button_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="6dp"
+            android:text="后退" />
+
+        <Button
+            android:id="@+id/button_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="141dp"
+            android:text="前进" />
+    </RelativeLayout>
 </LinearLayout>
