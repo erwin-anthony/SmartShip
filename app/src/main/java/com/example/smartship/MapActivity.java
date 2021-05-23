@@ -18,6 +18,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity implements RemoteView.onMoveClickListener {
 
     TextView locationInfo;
     LocationClient mLocationClient;
@@ -65,7 +66,7 @@ public class MapActivity extends AppCompatActivity {
     private String passWord = "ad9d4785a55cb288122d01192aa43f7a431fb008";
     private String mqtt_id = "smart_ship|securemode=3,signmethod=hmacsha1,timestamp=789|";
     private String mqtt_sub_topic = "609510594";
-    private String mqtt_pub_topic = "/a1jdH1fiX5K/${deviceName}/user/ship_control";
+    private String mqtt_pub_topic = "/a1jdH1fiX5K/${deviceName}/user/control";
     private ScheduledExecutorService scheduler;
     private TextView text_test;
     private MqttClient client;
@@ -76,30 +77,7 @@ public class MapActivity extends AppCompatActivity {
     private View button_left;
     private View button_right;
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (RemoteView.control.orientation){
-            case "Go": {
-                Toast.makeText(getApplicationContext(), "小船前进", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case "RETURN": {
-                Toast.makeText(getApplicationContext(), "小船后退", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case "LEFT": {
-                Toast.makeText(getApplicationContext(), "小船左转", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case "RIGHT": {
-                Toast.makeText(getApplicationContext(), "小船右转", Toast.LENGTH_SHORT).show();
-                break;
-            }
 
-
-        }
-        return super.onTouchEvent(event);
-    }
 
     @SuppressLint("HandlerLeak")
 
@@ -111,6 +89,7 @@ public class MapActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_map);
+
 
         Mqtt_init();
         startReconnect();
@@ -170,6 +149,7 @@ public class MapActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(getApplicationContext(),"小船前进" ,Toast.LENGTH_SHORT).show();
+
                 publishmessageplus(mqtt_pub_topic,"150");
             }
         });
@@ -222,7 +202,7 @@ public class MapActivity extends AppCompatActivity {
         }
         //摇杆控制监听器
         controlDirection=(RemoteView)findViewById(R.id.controlDirectionBnt);
-
+        controlDirection.setOnClickListener(this);
 
 
 
@@ -305,8 +285,23 @@ public class MapActivity extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    public void click(String oriration) {
+        switch (oriration){
+            case "up":
+                Toast.makeText(this, "go", Toast.LENGTH_SHORT).show();
+                break;
+            case "down":
+                Toast.makeText(this, "return", Toast.LENGTH_SHORT).show();
+                break;
+            case "left":
+                Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
+                break;
+            case "right":
+                Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 
 
     private class MyLocationListener extends BDAbstractLocationListener{
@@ -332,8 +327,6 @@ public class MapActivity extends AppCompatActivity {
                 currentPosition.append("网络");
             }
             locationInfo.setText(currentPosition);
-
-
 
         }
     }

@@ -35,6 +35,8 @@ public class RemoteView extends View {
 
     RectF mRectF = new RectF(backX-radiusBack,backY-radiusBack,backX+radiusBack,backY+radiusBack);
 
+   public onMoveClickListener onClickListener;
+
 
     Context mContext;
 
@@ -241,18 +243,30 @@ public class RemoteView extends View {
     private void getOrientation(float x,float y){
         if (y<backY&&(x<backX+backX*0.707&&x>backY-backY*0.707)){
             control.orientation = "GO";
+            onClickListener.click("up");
         }else if (x>backX&&(y<backY+backY*0.707&&y>backY-backY*0.707)){
             control.orientation="RIGHT";
+            onClickListener.click("right");
         }else if (y>backY&&(x<backX+backX*0.707&&x>backY-backY*0.707)){
             control.orientation="RETURN";
+            onClickListener.click("down");
         }else if (x<backX&&(y<backY+backY*0.707&&y>backY-backY*0.707)){
             control.orientation="LEFT";
+            onClickListener.click("left");
         }else {
             control.orientation="STOP";
         }
 
     }
 
+    public interface  onMoveClickListener{
+        void click(String oriration);
+    }
 
+
+
+    public void setOnClickListener(RemoteView.onMoveClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
 }
 
