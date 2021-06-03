@@ -6,10 +6,6 @@ import android.content.SharedPreferences;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * Created  Time om 2019/10/7
- * Auther : shuai
- */
 public class SharedPreUtils {
     static Context context;
     private static SharedPreUtils sharedPreUtils;

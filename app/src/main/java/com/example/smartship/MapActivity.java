@@ -61,14 +61,13 @@ public class MapActivity extends AppCompatActivity implements RemoteView.onMoveC
     public RemoteView orientation;
     private View btn4;
     private Object mqttManager;
-    private String host = "tcp://a1jdH1fiX5K.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883";
-    private String userName = "smart_ship&a1jdH1fiX5K";
-    private String passWord = "ad9d4785a55cb288122d01192aa43f7a431fb008";
-    private String mqtt_id = "smart_ship|securemode=3,signmethod=hmacsha1,timestamp=789|";
-    private String mqtt_sub_topic = "609510594";
-    private String mqtt_pub_topic = "/a1jdH1fiX5K/${deviceName}/user/control";
+    private String host = "tcp://a1qZl4JGSVn.iot-as-mqtt.cn-shanghai.aliyuncs.com:1883";
+    private String userName = "my_app&a1qZl4JGSVn";
+    private String passWord = "e4489347774951d00fb433d69aca1f72db2572fc";
+    private String mqtt_id = "APP|securemode=3,signmethod=hmacsha1,timestamp=789|";
+    private String mqtt_sub_topic = "/a1qZl4JGSVn/my_app/user/control";
+    private String mqtt_pub_topic = "/a1qZl4JGSVn/my_app/user/control";
     private ScheduledExecutorService scheduler;
-    private TextView text_test;
     private MqttClient client;
     private MqttConnectOptions options;
     private Handler handler;
@@ -106,7 +105,6 @@ public class MapActivity extends AppCompatActivity implements RemoteView.onMoveC
                         break;
                     case 3:  //MQTT 收到消息回传   UTF8Buffer msg=new UTF8Buffer(object.toString());
                         Toast.makeText(MapActivity.this,msg.obj.toString() ,Toast.LENGTH_SHORT).show();
-                        text_test.setText(msg.obj.toString());
                         break;
                     case 30:  //连接失败
                         Toast.makeText(MapActivity.this,"连接失败" ,Toast.LENGTH_SHORT).show();
@@ -144,39 +142,39 @@ public class MapActivity extends AppCompatActivity implements RemoteView.onMoveC
         mBaiduMap.setMyLocationEnabled(true);
 
 //按钮控制
-        button_go.setOnClickListener(new ViewClickVibrate() {
+        button_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Toast.makeText(getApplicationContext(),"小船前进" ,Toast.LENGTH_SHORT).show();
 
-                publishmessageplus(mqtt_pub_topic,"150");
+                publishmessageplus(mqtt_pub_topic,"{\"前进\":150}");
             }
-        });
+        } );
 
-        button_return.setOnClickListener(new ViewClickVibrate() {
+        button_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(getApplicationContext(),"小船后退" ,Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"{\"后退\":0}");
             }
         });
 
-        button_left.setOnClickListener(new ViewClickVibrate() {
+        button_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(getApplicationContext(),"小船左转" ,Toast.LENGTH_SHORT).show();
-                publishmessageplus(mqtt_pub_topic,"1");
+                publishmessageplus(mqtt_pub_topic,"{\"左转\":1}");
             }
         });
 
-        button_right.setOnClickListener(new ViewClickVibrate() {
+        button_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Toast.makeText(getApplicationContext(),"小船右转" ,Toast.LENGTH_SHORT).show();
-                publishmessageplus(mqtt_pub_topic,"255");
+                publishmessageplus(mqtt_pub_topic,"{\"右转\":255}");
             }
         });
 
@@ -290,15 +288,19 @@ public class MapActivity extends AppCompatActivity implements RemoteView.onMoveC
         switch (oriration){
             case "up":
                 Toast.makeText(this, "go", Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"{\"前进\":150}");
                 break;
             case "down":
                 Toast.makeText(this, "return", Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"{\"后退\":0}");
                 break;
             case "left":
                 Toast.makeText(this, "left", Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"{\"左转\":1}");
                 break;
             case "right":
                 Toast.makeText(this, "right", Toast.LENGTH_SHORT).show();
+                publishmessageplus(mqtt_pub_topic,"{\"右转\":255}");
                 break;
         }
     }
@@ -403,9 +405,9 @@ public class MapActivity extends AppCompatActivity implements RemoteView.onMoveC
             //设置连接的密码
             options.setPassword(passWord.toCharArray());
             // 设置超时时间 单位为秒
-            options.setConnectionTimeout(70);
+            options.setConnectionTimeout(30);
             // 设置会话心跳时间 单位为秒 服务器会每隔1.5*20秒的时间向客户端发送个消息判断客户端是否在线，但这个方法并没有重连的机制
-            options.setKeepAliveInterval(100);
+            options.setKeepAliveInterval(60);
             //设置回调
             client.setCallback(new MqttCallback() {
                 @Override
